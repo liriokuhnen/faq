@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/component.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="col-lg-12">
+	<div class="main">
+		<ul id="cbp-ntaccordion" class="cbp-ntaccordion">
+
+			{% for answer in answers %}
+			  	<li>
+					<h3 class="cbp-nttrigger">{{ answer.question }}</h3>
+					<div class="cbp-ntcontent">
+						<p>{{ answer.answer }}</p>
+					</div>
+				</li>
+			{% else %}
+			    FAQ empty, send your question.
+			{% endfor %}
+
+		</ul>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+				
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="{{ asset('js/modernizr.custom.js') }}"></script>
+<script src="{{ asset('js/jquery.cbpNTAccordion.min.js') }}"></script>
+<script>
+	$( function() {
+		/*
+		- how to call the plugin:
+		$( selector ).cbpNTAccordion( [options] );
+		- destroy:
+		$( selector ).cbpNTAccordion( 'destroy' );
+		*/
+
+		$( '#cbp-ntaccordion' ).cbpNTAccordion();
+
+	} );
+</script>
+{% endblock %}

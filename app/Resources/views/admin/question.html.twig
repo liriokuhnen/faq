@@ -1,0 +1,44 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block body %}
+
+
+<h2>Receive Questions</h2>
+
+{% if questions %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Created</th>
+      <th>Read</th>
+      <th>Answer to FAQ</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for question in questions %}
+    <tr>
+      <td>{{ question.questionName }}</td>
+      <td>{{ question.name }}</td>
+      <td>{{ question.email }}</td>
+      <td>{{ question.created|date('Y-m-d H:i:s') }}</td>
+      <td>
+        {% if question.open %}
+          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+        {% else %}
+          <a href='/admin/question/read/{{ question.id }}'><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>
+        {% endif %}
+      </td>
+      <td><a href="/admin/answer/create?question_id={{ question.id }}">Add to FAQ</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+No records found
+{% endif %}
+
+{% endblock %}

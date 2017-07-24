@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}FAQ{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jumbotron-narrow.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"> 
+    </head>
+    <body>
+        <div class="container">
+            
+            <!-- HEADER -->
+            <div class="header clearfix">
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        <li role="presentation"><a href="{{ path('send_question') }}">Send Question</a></li>
+                    </ul>
+                </nav>
+                <h3 class="text-muted text-logo"><a href="{{ path('home') }}">   
+                Faq 
+                <span style="font-size:20px;" class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                </a></h3>
+            </div>
+            <!-- END HEADER -->
+
+            <div class="row marketing">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                      <div class="alert alert-{{ label }}" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endfor %}
+
+                {% block body %}{% endblock %}
+            </div>
+
+            <footer class="footer">
+            <p style="text-align:center;">&copy; 2017 developed by Lírio Kuhnen.</p>
+            </footer>
+
+            </div> 
+
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

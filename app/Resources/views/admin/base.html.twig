@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}FAQ - Dashboard{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"> 
+    </head>
+    <body>
+
+        <!-- HEADER -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{{ path('admin') }}">Faq 
+                <span style="font-size:15px;" class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ logout_path() }}">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- END HEADER -->
+
+        <div class="container-fluid">
+          <div class="row">
+
+            <!-- NAVBAR -->
+            <div class="col-sm-3 col-md-2 sidebar">
+              <h4>FAQ Answers</h4>
+              <ul class="nav nav-sidebar">
+                <li><a href="{{ path('answer_list') }}">List</a></li>
+                <li><a href="{{ path('answer_create') }}">Create</a></li>
+              </ul>
+
+              <h4>Asked Questions</h4>
+              <ul class="nav nav-sidebar">
+                <li><a href="{{ path('question_list') }}">List</a></li>
+                <li><a href="{{ path('question_unread') }}">Unread</a></li>
+              </ul>
+            </div>
+            <!-- END NAVBAR -->
+
+            <!-- CONTENT -->
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                      <div class="alert alert-{{ label }}" role="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endfor %}
+                
+                {% block body %}{% endblock %}
+            </div>
+            <!-- END CONTENT -->
+          </div>
+        </div>
+
+        <script src="{{ asset('jquery.js') }}"></script>
+        <script src="{{ asset('bootstrap.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

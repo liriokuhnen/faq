@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FAQ - Send Question{% endblock %}
+
+{% block body %}
+
+{% if not sent_form %}
+
+    {{ form_start(form) }}
+        
+        <div class="form-group">
+        {{ form_row(form.name) }}
+        </div>
+
+        <div class="form-group">
+        {{ form_row(form.email) }}
+        </div>
+
+        <div class="form-group">
+        {{ form_row(form.questionName) }}
+        </div>
+
+        <button type="submit" value='submit' class="btn btn-primary">Send</button>
+    {{ form_end(form) }}
+
+{% endif %}
+
+{% endblock %}
